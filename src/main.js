@@ -1,12 +1,12 @@
 import Vue from "vue";
 import App from "./App.vue";
-import { Button, Dialog } from "element-ui";
+import router from "./router/router";
+import VueRouter from "vue-router";
 
-Vue.use(Button);
-Vue.use(Dialog);
-
+Vue.use(VueRouter);
 Vue.config.productionTip = false;
 
 new Vue({
-  render: h => h(App)
+  render: h => h(App),
+  router
 }).$mount("#app");
