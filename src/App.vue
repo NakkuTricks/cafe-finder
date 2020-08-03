@@ -21,17 +21,6 @@ export default {
 </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  box-sizing: border-box;
-  text-decoration: none;
-}
-html body {
-  height: 100vh;
-  width: 100%;
-}
 .app {
   height: 100%;
   display: flex;
