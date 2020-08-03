@@ -1,17 +1,23 @@
 <template>
-  <ul class="place-list">
-    <li class="place-item" v-for="(place, id) in places" :key="id">
-      {{ place }}
-    </li>
-  </ul>
+  <div class="place-list">
+    <ul>
+      <li class="place-item" v-for="(place, id) in places" :key="id">
+        <a href="#">{{ place.name }}</a>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 export default {
+  props: {
+    places: {
+      type: Array,
+      default: () => []
+    }
+  },
   data() {
-    return {
-      places: ["Benedict", "Veggy", "Benedict", "Veggy", "Benedict", "Veggy"]
-    };
+    return {};
   }
 };
 </script>
@@ -24,6 +30,7 @@ export default {
   margin: 10px 0;
   padding: 15px;
   text-decoration: underline;
+  overflow-y: scroll;
 }
 .place-item {
   margin-bottom: 25px;

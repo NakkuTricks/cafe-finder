@@ -2,7 +2,7 @@
   <main class="places">
     <div class="places__container">
       <h1 class="places__title">Мои Заведения</h1>
-      <place-list></place-list>
+      <place-list :places="places"></place-list>
       <base-button></base-button>
     </div>
   </main>
@@ -19,6 +19,15 @@ export default {
   components: {
     PlaceList,
     BaseButton
+  },
+  methods: {},
+  computed: {
+    places() {
+      return this.$store.state.Places.places;
+    }
+  },
+  mounted() {
+    this.$store.dispatch("getPlaceList");
   }
 };
 </script>

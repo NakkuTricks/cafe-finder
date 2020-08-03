@@ -3,7 +3,7 @@
     <nav class="the-header__navigation">
       <a href="#" class="the-header__title">Заголовок</a>
       <div class="the-header__account">
-        <a href="#" class="the-header__item the-header__item_login">
+        <a href="#" class="the-header__item the-header__item_divider">
           Вы вошли как Ivan
         </a>
         <a href="#" class="the-header__item the-header__item_exit">Выйти</a>
@@ -37,11 +37,11 @@ export default {};
   display: flex;
   justify-content: space-between;
 }
-.the-header__item_login {
+.the-header__item_divider {
   display: flex;
   width: 100%;
 }
-.the-header__item_login::after {
+.the-header__item_divider::after {
   content: "|";
   height: 100%;
   margin: 0 auto;
