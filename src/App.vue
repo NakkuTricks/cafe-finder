@@ -1,9 +1,11 @@
 <template>
   <div id="app" class="app">
     <the-header></the-header>
-    <div class="app__container">
-      <router-view></router-view>
-    </div>
+    <main class="app__container">
+      <div class="app__wrapper">
+        <router-view></router-view>
+      </div>
+    </main>
   </div>
 </template>
 
@@ -22,13 +24,22 @@ export default {
 
 <style>
 .app {
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 .app__container {
   background-color: #dbdbdb;
-  height: 100%;
+  height: 92%;
   padding: 20px 25px;
+}
+.app__wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 25px;
+  background-color: white;
+  border: 1px solid black;
 }
 </style>

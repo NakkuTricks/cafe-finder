@@ -1,14 +1,18 @@
 <template>
   <div class="place-list">
     <ul>
-      <li class="place-item" v-for="(place, id) in places" :key="id">
-        <a href="#">{{ place.name }}</a>
-      </li>
+      <place-item
+        class="place-item"
+        v-for="(place, id) in places"
+        :key="id"
+        :place="place"
+      ></place-item>
     </ul>
   </div>
 </template>
 
 <script>
+import PlaceItem from "./PlaceItem";
 export default {
   props: {
     places: {
@@ -18,13 +22,15 @@ export default {
   },
   data() {
     return {};
+  },
+  components: {
+    PlaceItem
   }
 };
 </script>
 
 <style>
 .place-list {
-  font-size: 25px;
   border: 1px solid black;
   height: 100%;
   margin: 10px 0;

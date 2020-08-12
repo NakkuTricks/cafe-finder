@@ -1,19 +1,49 @@
 <template>
-  <button class="base-button">Добавить заведение</button>
+  <button
+    class="base-button"
+    :class="`base-button--${kind}`"
+    :type="type"
+    @click="onClick"
+  >
+    <slot />
+  </button>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "BaseButton",
+  props: {
+    type: {
+      type: String,
+      default: "button"
+    },
+    kind: {
+      type: String,
+      default: "primary"
+    }
+  },
+  methods: {
+    onClick() {
+      this.$emit("click");
+    }
+  }
+};
 </script>
 
 <style>
 .base-button {
+  padding: 15px 25px;
+  background-color: #dbdbdb;
+  border: 1px solid black;
+}
+.base-button--secondary {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #dbdbdb;
-  padding: 10px 15px;
-  border: 1px solid black;
+  padding: 5px 15px;
+  height: 100%;
+  border: none;
+  background-color: white;
+  text-decoration: underline;
 }
 </style>

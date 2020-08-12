@@ -1,11 +1,13 @@
 <template>
-  <main class="places">
-    <div class="places__container">
+  <div class="places">
+    <div class="places__container container">
       <h1 class="places__title">Мои Заведения</h1>
       <place-list :places="places"></place-list>
-      <base-button></base-button>
+      <base-button>
+        <router-link :to="'/owner/places/add'">Добавить заведение</router-link>
+      </base-button>
     </div>
-  </main>
+  </div>
 </template>
 
 <script>
@@ -33,23 +35,7 @@ export default {
 </script>
 
 <style>
-.places {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 25px;
-  background-color: white;
-  border: 1px solid black;
-}
 .places__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
   max-width: 350px;
-  width: 100%;
-}
-.places__title {
-  font-size: 50px;
 }
 </style>
