@@ -1,11 +1,14 @@
 <template>
   <header class="the-header">
     <nav class="the-header__navigation">
-      <a href="#" class="the-header__title">Заголовок</a>
+      <router-link :to="'/'" class="the-header__title">Заголовок</router-link>
+      <router-link :to="'/owner/places'" class="the-header__title"
+        >Страница Мои заведения</router-link
+      >
       <div class="the-header__account">
-        <a href="#" class="the-header__item the-header__item_divider">
-          Вы вошли как Ivan
-        </a>
+        <a href="#" class="the-header__item the-header__item_divider"
+          >Вы вошли как Ivan</a
+        >
         <a href="#" class="the-header__item the-header__item_exit">Выйти</a>
       </div>
     </nav>
@@ -19,16 +22,18 @@ export default {};
 <style>
 .the-header {
   display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   border-bottom: 1px solid black;
+  padding: 15px 25px;
+  height: 8%;
 }
 .the-header__navigation {
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
-  margin: 15px 25px;
-  font-size: 25px;
 }
 .the-header__title {
   text-decoration: underline;
