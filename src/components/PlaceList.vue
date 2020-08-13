@@ -3,8 +3,8 @@
     <ul>
       <place-item
         class="place-item"
-        v-for="(place, id) in places"
-        :key="id"
+        v-for="place in places"
+        :key="place.id"
         :place="place"
       ></place-item>
     </ul>

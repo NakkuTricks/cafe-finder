@@ -13,7 +13,7 @@ export default {
     getPlaceList({ commit }) {
       getPlaces().then(places => commit("setPlaces", places));
     },
-    newPlace({ commit }, placeData) {
+    createPlace({ commit }, placeData) {
       createPlace(placeData).then(place => commit("addPlace", place));
     },
     updatePlace({ commit }, placeData) {

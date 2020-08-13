@@ -2,6 +2,7 @@
   <div class="base-input">
     <slot name="label"></slot>
     <slot name="address"></slot>
+    <slot name="price"></slot>
     <div class="base-input__wrapper">
       <input class="base-input__input" type="text" v-model.trim="getValue" />
     </div>
@@ -12,7 +13,7 @@
 export default {
   props: {
     value: {
-      type: String,
+      type: [String, Number],
       default: ""
     }
   },
