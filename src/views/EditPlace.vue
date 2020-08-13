@@ -31,12 +31,13 @@
           </template>
         </base-input>
 
-        <base-place-dish>
+        <place-dishes v-if="!isCreating" :place="place" :dishes="dishes">
           <template v-slot:label>
             <p class="edit-place__title">Блюда:</p>
           </template>
-        </base-place-dish>
+        </place-dishes>
       </div>
+
       <div class="edit-place__buttons">
         <base-button v-if="isCreating" type="submit">Добавить</base-button>
         <template v-else>
@@ -53,9 +54,11 @@
 <script>
 import BaseInput from "@/components/BaseInput";
 import BasePhotoUploader from "@/components/BasePhotoUploader";
-import BasePlaceDish from "@/components/BasePlaceDish";
+import PlaceDishes from "@/components/PlaceDishes";
 import BaseTimepicker from "@/components/BaseTimepicker";
 import BaseButton from "@/components/BaseButton";
+
+import { getDishes } from "@/api/dishes/";
 
 import { required, minLength, maxLength } from "vuelidate/lib/validators";
 
@@ -64,7 +67,7 @@ export default {
   components: {
     BaseInput,
     BasePhotoUploader,
-    BasePlaceDish,
+    PlaceDishes,
     BaseTimepicker,
     BaseButton
   },
@@ -81,7 +84,8 @@ export default {
         from_hour: "",
         to_hour: "",
         address: ""
-      }
+      },
+      dishes: []
     };
   },
   computed: {
@@ -109,7 +113,7 @@ export default {
       this.$v.place.$touch();
 
       if (!this.$v.place.$invalid) {
-        const action = this.isCreating ? "newPlace" : "updatePlace";
+        const action = this.isCreating ? "createPlace" : "updatePlace";
         this.$store.dispatch(action, this.place);
         this.$router.push("/owner/places");
       }
@@ -123,6 +127,8 @@ export default {
     if (!this.isCreating) {
       this.place = { ...this.$store.getters.getPlaceById(Number(this.id)) };
     }
+
+    getDishes(this.id).then(dish => (this.dishes = dish));
   },
   validations: {
     place: {

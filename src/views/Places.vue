@@ -3,24 +3,23 @@
     <div class="places__container container">
       <h1 class="places__title">Мои Заведения</h1>
       <place-list :places="places"></place-list>
-      <base-button>
-        <router-link :to="'/owner/places/add'">Добавить заведение</router-link>
-      </base-button>
+
+      <router-link tag="button" :to="'/owner/places/add'"
+        >Добавить заведение</router-link
+      >
     </div>
   </div>
 </template>
 
 <script>
 import PlaceList from "@/components/PlaceList";
-import BaseButton from "@/components/BaseButton";
 
 export default {
   data() {
     return {};
   },
   components: {
-    PlaceList,
-    BaseButton
+    PlaceList
   },
   methods: {},
   computed: {

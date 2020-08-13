@@ -35,6 +35,7 @@ export default {
   padding: 15px 25px;
   background-color: #dbdbdb;
   border: 1px solid black;
+  font-size: 20px;
 }
 .base-button--secondary {
   display: flex;

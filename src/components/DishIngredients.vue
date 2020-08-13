@@ -1,34 +1,37 @@
 <template>
-  <div class="base-place-dish">
+  <div class="place-dishes">
     <slot name="label"></slot>
-    <div class="base-place-dish__wrapper">
-      <ul class="base-place-dish__dishes">
-        <li>Блюдо 1</li>
-        <li>Блюдо 2</li>
-        <li>Блюдо 3</li>
+    <div class="place-dishes__wrapper">
+      <ul class="place-dishes__dishes">
+        <ingredient-item></ingredient-item>
       </ul>
-      <button class="base-place-dish__add-dish button">Добавить блюдо</button>
+      <button class="place-dishes__add-dish button">Добавить ингредиент</button>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import IngredientItem from "./IngredientItem";
+export default {
+  components: {
+    IngredientItem
+  }
+};
 </script>
 
 <style>
-.base-place-dish {
+.place-dishes {
   display: flex;
   justify-content: space-between;
   height: 20%;
   margin-bottom: 5px;
 }
-.base-place-dish__wrapper {
+.place-dishes__wrapper {
   display: flex;
   justify-content: space-between;
   width: 60%;
 }
-.base-place-dish__dishes {
+.place-dishes__dishes {
   border: 1px solid black;
   height: 100%;
   padding: 15px;
@@ -37,7 +40,7 @@ export default {};
   width: 75%;
   margin-right: 10px;
 }
-.base-place-dish__add-dish {
+.place-dishes__add-dish {
   width: 35%;
   height: 65%;
 }
