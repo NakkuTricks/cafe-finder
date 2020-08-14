@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import DishItem from "./DishItem";
+import DishItem from "../dish/DishItem";
 export default {
   props: {
     dishes: {
@@ -55,6 +55,8 @@ export default {
   width: 60%;
 }
 .place-dishes__dishes {
+  display: flex;
+  flex-direction: column;
   border: 1px solid black;
   height: 100%;
   padding: 15px;

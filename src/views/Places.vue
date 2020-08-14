@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import PlaceList from "@/components/PlaceList";
+import PlaceList from "@/components/place/PlaceList";
 
 export default {
   data() {

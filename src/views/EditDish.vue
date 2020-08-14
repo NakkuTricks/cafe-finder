@@ -1,7 +1,7 @@
 <template>
   <div class="edit-dish">
     <form class="edit-dish__form container" @submit.prevent="checkForm">
-      <h1 class="edit-dish__dish-name">Блюдо 1</h1>
+      <h1 class="edit-dish__dish-name">{{ dish.name }}</h1>
 
       <base-input :value="dish.name" @setValue="setName">
         <template v-slot:label>
@@ -37,14 +37,19 @@
         </template>
       </div>
     </form>
+    <base-modal>
+      <ingredient-list></ingredient-list>
+    </base-modal>
   </div>
 </template>
 
 <script>
-import BaseInput from "@/components/BaseInput";
-import BasePhotoUploader from "@/components/BasePhotoUploader";
-import BaseButton from "@/components/BaseButton";
-import DishIngredients from "@/components/DishIngredients";
+import BaseInput from "@/components/base/BaseInput";
+import BasePhotoUploader from "@/components/base/BasePhotoUploader";
+import BaseButton from "@/components/base/BaseButton";
+import DishIngredients from "@/components/dish/DishIngredients";
+import BaseModal from "@/components/base/BaseModal";
+import IngredientList from "@/components/ingredient/IngredientList";
 
 import { MessageBox } from "element-ui";
 
@@ -58,6 +63,8 @@ export default {
     BaseInput,
     BasePhotoUploader,
     BaseButton,
+    BaseModal,
+    IngredientList,
     DishIngredients
   },
   props: {
@@ -95,9 +102,9 @@ export default {
       }
     },
     deleteDish() {
-      MessageBox.confirm(`Do you really want to delete dish?`, "Confirmation", {
-        confirmButtonText: "OK",
-        cancelButtonText: "Cancel",
+      MessageBox.confirm(`Желаете удалить блюдо?`, "Confirmation", {
+        confirmButtonText: "Да",
+        cancelButtonText: "Нет",
         type: "warning"
       }).then(() => {
         deleteDish(this.id).then(() => {

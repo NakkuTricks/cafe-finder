@@ -52,11 +52,11 @@
 </template>
 
 <script>
-import BaseInput from "@/components/BaseInput";
-import BasePhotoUploader from "@/components/BasePhotoUploader";
-import PlaceDishes from "@/components/PlaceDishes";
-import BaseTimepicker from "@/components/BaseTimepicker";
-import BaseButton from "@/components/BaseButton";
+import BaseInput from "@/components/base/BaseInput";
+import BasePhotoUploader from "@/components/base/BasePhotoUploader";
+import PlaceDishes from "@/components/place/PlaceDishes";
+import BaseTimepicker from "@/components/base/BaseTimepicker";
+import BaseButton from "@/components/base/BaseButton";
 
 import { getDishes } from "@/api/dishes/";
 
