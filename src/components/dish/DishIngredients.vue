@@ -3,18 +3,22 @@
     <slot name="label"></slot>
     <div class="place-dishes__wrapper">
       <ul class="place-dishes__dishes">
-        <ingredient-item></ingredient-item>
+        <dish-ingredient-item></dish-ingredient-item>
       </ul>
-      <button class="place-dishes__add-dish button">Добавить ингредиент</button>
+      <base-button class="place-dishes__add-dish button"
+        >Добавить ингредиент</base-button
+      >
     </div>
   </div>
 </template>
 
 <script>
-import IngredientItem from "./IngredientItem";
+import DishIngredientItem from "./DishIngredientItem";
+import BaseButton from "../base/BaseButton";
 export default {
   components: {
-    IngredientItem
+    DishIngredientItem,
+    BaseButton
   }
 };
 </script>

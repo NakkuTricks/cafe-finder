@@ -38,6 +38,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: row;
+  position: relative;
   padding: 25px;
   background-color: white;
   border: 1px solid black;
