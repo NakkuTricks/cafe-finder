@@ -1,11 +1,17 @@
 <template>
-  <div class="place-dishes">
+  <div class="dish-ingredients">
     <slot name="label"></slot>
-    <div class="place-dishes__wrapper">
-      <ul class="place-dishes__dishes">
-        <dish-ingredient-item></dish-ingredient-item>
+    <div class="dish-ingredients__wrapper">
+      <ul class="dish-ingredients__dishes">
+        <li v-for="ingredient in ingredients" :key="ingredient.id">
+          <button @click="removeIngredient(ingredient.id)">
+            {{ ingredient.name }}
+          </button>
+        </li>
       </ul>
-      <base-button class="place-dishes__add-dish button"
+      <base-button
+        @click="showIngredientsModal"
+        class="dish-ingredients__add-dish button"
         >Добавить ингредиент</base-button
       >
     </div>
@@ -13,29 +19,38 @@
 </template>
 
 <script>
-import DishIngredientItem from "./DishIngredientItem";
 import BaseButton from "../base/BaseButton";
 export default {
+  props: {
+    ingredients: {}
+  },
   components: {
-    DishIngredientItem,
     BaseButton
+  },
+  methods: {
+    showIngredientsModal() {
+      this.$emit("showIngredientsModal");
+    },
+    removeIngredient(id) {
+      this.$emit("removeIngredient", id);
+    }
   }
 };
 </script>
 
 <style>
-.place-dishes {
+.dish-ingredients {
   display: flex;
   justify-content: space-between;
   height: 20%;
   margin-bottom: 5px;
 }
-.place-dishes__wrapper {
+.dish-ingredients__wrapper {
   display: flex;
   justify-content: space-between;
   width: 60%;
 }
-.place-dishes__dishes {
+.dish-ingredients__dishes {
   border: 1px solid black;
   height: 100%;
   padding: 15px;
@@ -44,7 +59,7 @@ export default {
   width: 75%;
   margin-right: 10px;
 }
-.place-dishes__add-dish {
+.dish-ingredients__add-dish {
   width: 35%;
   height: 65%;
 }
