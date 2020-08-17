@@ -21,7 +21,11 @@
         </template>
       </base-input>
 
-      <dish-ingredients>
+      <dish-ingredients
+        :ingredients="dish.ingredients"
+        @showIngredientsModal="showIngredientsModal"
+        @removeIngredient="removeIngredient"
+      >
         <template v-slot:label>
           <p class="edit-dish__title">Ингредиенты:</p>
         </template>
@@ -37,8 +41,32 @@
         </template>
       </div>
     </form>
-    <base-modal>
-      <ingredient-list></ingredient-list>
+
+    <base-modal
+      v-if="isModalShow"
+      :showIngredientsModal="showIngredientsModal"
+      @closeModal="closeModal"
+    >
+      <template v-slot:label></template>
+
+      <ingredient-list
+        @addChoseIngredient="addChoseIngredient"
+        @newIngredientModal="newIngredientModal"
+        :allIngredients="allIngredients"
+        :dishIngredients="dish.ingredients"
+      ></ingredient-list>
+    </base-modal>
+
+    <base-modal
+      v-if="isIngredientCreateShow"
+      :showIngredientsModal="showIngredientsModal"
+      @closeModal="closeModal"
+    >
+      <template v-slot:label></template>
+
+      <ingredient-create-window
+        @createNewIngredient="createNewIngredient"
+      ></ingredient-create-window>
     </base-modal>
   </div>
 </template>
@@ -50,10 +78,11 @@ import BaseButton from "@/components/base/BaseButton";
 import DishIngredients from "@/components/dish/DishIngredients";
 import BaseModal from "@/components/base/BaseModal";
 import IngredientList from "@/components/ingredient/IngredientList";
+import IngredientCreateWindow from "@/components/ingredient/IngredientCreateWindow";
 
 import { MessageBox } from "element-ui";
 
-import { createDish, deleteDish, updateDish } from "@/api/dishes";
+import { createDish, deleteDish, updateDish, getDishById } from "@/api/dishes";
 
 import { required, minLength, maxLength } from "vuelidate/lib/validators";
 
@@ -65,6 +94,7 @@ export default {
     BaseButton,
     BaseModal,
     IngredientList,
+    IngredientCreateWindow,
     DishIngredients
   },
   props: {
@@ -79,15 +109,39 @@ export default {
   },
   data() {
     return {
+      isModalShow: false,
+      isIngredientCreateShow: false,
       dish: {
         name: "",
         photo: "",
         price: "",
-        ingredients: [1]
+        ingredients: []
       }
     };
   },
   methods: {
+    showIngredientsModal() {
+      this.isModalShow = true;
+    },
+    closeModal() {
+      this.isModalShow = false;
+      this.isIngredientCreateShow = false;
+    },
+    addChoseIngredient(value) {
+      this.dish.ingredients = value;
+      this.isModalShow = false;
+    },
+    newIngredientModal() {
+      this.isIngredientCreateShow = true;
+    },
+    removeIngredient(id) {
+      const index = this.dish.ingredients.findIndex(item => item.id === id);
+      this.dish.ingredients.splice(index, 1);
+    },
+    createNewIngredient(ingredient) {
+      this.$store.dispatch("createIngredient", ingredient);
+      this.isIngredientCreateShow = false;
+    },
     checkForm() {
       if (!this.$v.dish.$invalid) {
         if (this.isCreating) {
@@ -128,12 +182,18 @@ export default {
   computed: {
     isCreating() {
       return this.id === "add";
+    },
+    allIngredients() {
+      return this.$store.state.Ingredients.list;
     }
   },
   created() {
     if (!this.isCreating) {
       this.dish = { ...this.$route.params.dish };
+      getDishById(this.dish.id).then(dish => (this.dish = dish));
     }
+
+    this.$store.dispatch("getIngredientList");
   },
   validations: {
     dish: {
@@ -153,6 +213,10 @@ export default {
       },
       price: {
         required
+      },
+      ingredients: {
+        required,
+        minLength: minLength(1)
       }
     }
   }
@@ -180,6 +244,9 @@ export default {
 }
 .edit-dish__title {
   width: 40%;
+  margin: 0;
+}
+.edit-dish__modal-title {
   margin: 0;
 }
 .edit-dish__dish-name {
