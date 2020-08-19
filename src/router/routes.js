@@ -1,6 +1,8 @@
 import Places from "../views/Places";
 import EditPlace from "../views/EditPlace";
 import EditDish from "../views/EditDish";
+import UserRegistration from "../views/UserRegistration";
+import UserAuthorization from "../views/UserAuthorization";
 
 const owner = [
   {
@@ -19,6 +21,16 @@ const owner = [
     name: "EditDish",
     component: EditDish,
     props: true
+  },
+  {
+    path: "/registration",
+    name: "UserRegistration",
+    component: UserRegistration
+  },
+  {
+    path: "/authorization",
+    name: "UserAuthorization",
+    component: UserAuthorization
   }
 ];
 
