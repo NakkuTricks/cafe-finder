@@ -1,3 +1,4 @@
+import Home from "../views/Home";
 import Places from "../views/Places";
 import EditPlace from "../views/EditPlace";
 import EditDish from "../views/EditDish";
@@ -5,6 +6,11 @@ import UserRegistration from "../views/UserRegistration";
 import UserAuthorization from "../views/UserAuthorization";
 
 const owner = [
+  {
+    path: "/",
+    name: "Home",
+    component: Home
+  },
   {
     path: "/owner/places",
     name: "Places",

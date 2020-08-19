@@ -2,9 +2,7 @@
   <div id="app" class="app">
     <the-header></the-header>
     <main class="app__container">
-      <div class="app__wrapper">
-        <router-view></router-view>
-      </div>
+      <router-view class="app__wrapper"></router-view>
     </main>
   </div>
 </template>

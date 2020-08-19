@@ -16,7 +16,7 @@
       </div>
 
       <div class="the-header__login" v-else>
-        <router-link tag="a" :to="'/authorization'" class="the-header__item"
+        <router-link tag="a" :to="'/owner/places'" class="the-header__item"
           >Войти как владелец заведения</router-link
         >
       </div>
